@@ -70,6 +70,17 @@
             vim.loop.fs_mkdir(vim.o.backupdir, 750)
             vim.loop.fs_mkdir(vim.o.directory, 750)
             vim.loop.fs_mkdir(vim.o.undodir, 750)
+
+            local original_get_keymap = vim.api.nvim_get_keymap
+            vim.api.nvim_get_keymap = function(mode)
+              local keymaps = original_get_keymap(mode)
+              for _, keymap in ipairs(keymaps) do
+                if not keymap.desc or keymap.desc == "" then
+                  keymap.desc = keymap.rhs or "No description"
+                end
+              end
+              return keymaps
+            end
           '';
 
           extraFiles = {

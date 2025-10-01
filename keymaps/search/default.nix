@@ -8,15 +8,27 @@
       silent = true;
     };
   }
-   {
-     mode = "n";
-     key = "<leader>se";
-     action = "<cmd>Neotree toggle<CR>";
-     options = {
-       desc = "Explore files (File Browser)";
-       silent = true;
-     };
-   }
+
+  {
+    mode = "n";
+    key = "<leader>sk";
+    action = "<cmd>Telescope keymaps<CR>";
+    options = {
+      desc = "Search for keymaps";
+      silent = true;
+    };
+  }
+
+  {
+    mode = "n";
+    key = "<leader>se";
+    action = "<cmd>Neotree toggle<CR>";
+    options = {
+      desc = "Explore files (File Browser)";
+      silent = true;
+    };
+  }
+
   {
     mode = "n";
     key = "<leader>f";

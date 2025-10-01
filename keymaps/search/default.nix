@@ -8,24 +8,15 @@
       silent = true;
     };
   }
-  {
-    mode = "n";
-    key = "<leader>sB";
-    action = "<cmd>require('snacks').picker.git_branches()<CR>";
-    options = {
-      desc = "Git Branches";
-      silent = true;
-    };
-  }
-  # {
-  #   mode = "n";
-  #   key = "<leader>se";
-  #   action = "<cmd>Telescope file_browser<CR>";
-  #   options = {
-  #     desc = "Explore files (File Browser)";
-  #     silent = true;
-  #   };
-  # }
+   {
+     mode = "n";
+     key = "<leader>se";
+     action = "<cmd>Neotree toggle<CR>";
+     options = {
+       desc = "Explore files (File Browser)";
+       silent = true;
+     };
+   }
   {
     mode = "n";
     key = "<leader>f";

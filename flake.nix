@@ -313,6 +313,7 @@
               // (import ./plugin-config/mini)
               // (import ./plugin-config/modicator)
               // (import ./plugin-config/navbuddy)
+              // (import ./plugin-config/neo-tree)
               // (import ./plugin-config/neorg { inherit pkgs; })
               // (import ./plugin-config/neotest { inherit pkgs; })
               // (import ./plugin-config/noice { inherit pkgs; })
@@ -349,11 +350,11 @@
           # (import ./colorschemes/monokai-pro)
           # (import ./colorschemes/nightfox)
           # (import ./colorschemes/rose-pine)
-          # (import ./colorschemes/tokyonight)
+          (import ./colorschemes/tokyonight)
           # (import ./colorschemes/vscode)
           # (import ./colorschemes/poimandres)
           # (import ./colorschemes/onedark)
-          (import ./colorschemes/bamboo)
+          # (import ./colorschemes/bamboo)
         );
     in
     flake-parts.lib.mkFlake { inherit inputs; } {

@@ -135,6 +135,8 @@
             terraform
             websocat
             wordnet
+            wl-clipboard
+
           ];
 
           extraPlugins = with pkgs.vimPlugins; [
@@ -193,6 +195,7 @@
             updatetime = 300;
             wrap = false;
             writebackup = true;
+            clipboard = "unnamedplus";
           };
 
           keymaps = [ ]
@@ -399,6 +402,8 @@
             config = {
               allowUnfree = true;
             };
+
+            clipboard.providers.wl-copy.enable = true;
 
             overlays = [
               (final: _prev: {

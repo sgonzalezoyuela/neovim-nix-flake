@@ -182,25 +182,25 @@
           };
 
           keymaps = [ ]
-            ++ import ./keymaps/ai/avante
-            ++ import ./keymaps/ai/codecompanion
-            ++ import ./keymaps/ai/sidekick
-            ++ import ./keymaps/buffers
-            ++ import ./keymaps/db
-            ++ import ./keymaps/debugging
-            ++ import ./keymaps/folding
-            ++ import ./keymaps/git
-            ++ import ./keymaps/harpoon
-            ++ import ./keymaps/jumps
-            ++ import ./keymaps/lsp
-            ++ import ./keymaps/notifications
-            ++ import ./keymaps/obsidian
-            ++ import ./keymaps/rust-lsp
-            ++ import ./keymaps/search
-            ++ import ./keymaps/tabs
-            ++ import ./keymaps/terminal
-            ++ import ./keymaps/testing
-            ++ import ./keymaps/zk;
+          ++ import ./keymaps/ai/avante
+          ++ import ./keymaps/ai/codecompanion
+          ++ import ./keymaps/ai/sidekick
+          ++ import ./keymaps/buffers
+          ++ import ./keymaps/db
+          ++ import ./keymaps/debugging
+          ++ import ./keymaps/folding
+          ++ import ./keymaps/git
+          ++ import ./keymaps/harpoon
+          ++ import ./keymaps/jumps
+          ++ import ./keymaps/lsp
+          ++ import ./keymaps/notifications
+          ++ import ./keymaps/obsidian
+          ++ import ./keymaps/rust-lsp
+          ++ import ./keymaps/search
+          ++ import ./keymaps/tabs
+          ++ import ./keymaps/terminal
+          ++ import ./keymaps/testing
+          ++ import ./keymaps/zk;
 
           performance = {
             byteCompileLua = {
@@ -277,67 +277,67 @@
           // (
             # (import ./plugin-config/alpha)
             (import ./plugin-config/arrow)
-              // (import ./plugin-config/avante { inherit pkgs; })
-              // (import ./plugin-config/blink-cmp { inherit pkgs; })
-              // (import ./plugin-config/blink-cmp-copilot)
-              // (import ./plugin-config/blink-cmp-dictionary)
-              // (import ./plugin-config/blink-cmp-git)
-              // (import ./plugin-config/blink-compat)
-              // (import ./plugin-config/blink-ripgrep)
-              // (import ./plugin-config/ccc)
-              // (import ./plugin-config/codecompanion)
-              // (import ./plugin-config/colorful-menu)
-              // (import ./plugin-config/conform-nvim)
-              // (import ./plugin-config/copilot-lua)
-              // (import ./plugin-config/crates)
-              // (import ./plugin-config/dap { inherit pkgs; })
-              // (import ./plugin-config/dap-go { inherit pkgs; })
-              // (import ./plugin-config/dap-lldb { inherit pkgs; })
-              // (import ./plugin-config/dap-python)
-              // (import ./plugin-config/dap-ui)
-              // (import ./plugin-config/dap-virtual-text)
-              // (import ./plugin-config/faster-nvim)
-              // (import ./plugin-config/git-conflict)
-              // (import ./plugin-config/harpoon)
-              // (import ./plugin-config/img-clip { inherit  pkgs; })
-              // (import ./plugin-config/indent-tools)
-              // (import ./plugin-config/kulala { inherit pkgs; })
-              // (import ./plugin-config/lazydev)
-              // (import ./plugin-config/leap)
-              // (import ./plugin-config/lsp { inherit  pkgs; })
-              // (import ./plugin-config/lspkind)
-              // (import ./plugin-config/lualine)
-              // (import ./plugin-config/luasnip)
-              // (import ./plugin-config/lz-n)
-              // (import ./plugin-config/mini)
-              // (import ./plugin-config/modicator)
-              // (import ./plugin-config/navbuddy)
-              // (import ./plugin-config/neo-tree)
-              // (import ./plugin-config/neorg { inherit pkgs; })
-              // (import ./plugin-config/neotest { inherit pkgs; })
-              // (import ./plugin-config/noice { inherit pkgs; })
-              // (import ./plugin-config/obsidian)
-              // (import ./plugin-config/octo)
-              // (import ./plugin-config/oil)
-              // (import ./plugin-config/oil-git-status)
-              // (import ./plugin-config/origami)
-              // (import ./plugin-config/otter)
-              // (import ./plugin-config/parinfer-rust)
-              // (import ./plugin-config/remote-nvim { inherit pkgs; })
-              // (import ./plugin-config/render-markdown)
-              // (import ./plugin-config/rustaceanvim { inherit pkgs; })
-              // (import ./plugin-config/schemastore)
-              // (import ./plugin-config/sidekick)
-              // (import ./plugin-config/smartcolumn)
-              // (import ./plugin-config/snacks)
-              # // (import ./plugin-config/tailwind-tools)
-              // (import ./plugin-config/tiny-devicons-auto-colors)
-              // (import ./plugin-config/tiny-inline-diagnostic)
-              // (import ./plugin-config/treesitter { inherit pkgs; })
-              // (import ./plugin-config/treesitter-context)
-              // (import ./plugin-config/trouble)
-              // (import ./plugin-config/which-key)
-              // (import ./plugin-config/zk)
+            // (import ./plugin-config/avante { inherit pkgs; })
+            // (import ./plugin-config/blink-cmp { inherit pkgs; })
+            // (import ./plugin-config/blink-cmp-copilot)
+            // (import ./plugin-config/blink-cmp-dictionary)
+            // (import ./plugin-config/blink-cmp-git)
+            // (import ./plugin-config/blink-compat)
+            // (import ./plugin-config/blink-ripgrep)
+            // (import ./plugin-config/ccc)
+            // (import ./plugin-config/codecompanion)
+            // (import ./plugin-config/colorful-menu)
+            // (import ./plugin-config/conform-nvim)
+            // (import ./plugin-config/copilot-lua)
+            // (import ./plugin-config/crates)
+            // (import ./plugin-config/dap { inherit pkgs; })
+            // (import ./plugin-config/dap-go { inherit pkgs; })
+            // (import ./plugin-config/dap-lldb { inherit pkgs; })
+            // (import ./plugin-config/dap-python)
+            // (import ./plugin-config/dap-ui)
+            // (import ./plugin-config/dap-virtual-text)
+            // (import ./plugin-config/faster-nvim)
+            // (import ./plugin-config/git-conflict)
+            // (import ./plugin-config/harpoon)
+            // (import ./plugin-config/img-clip { inherit pkgs; })
+            // (import ./plugin-config/indent-tools)
+            // (import ./plugin-config/kulala { inherit pkgs; })
+            // (import ./plugin-config/lazydev)
+            // (import ./plugin-config/leap)
+            // (import ./plugin-config/lsp { inherit pkgs; })
+            // (import ./plugin-config/lspkind)
+            // (import ./plugin-config/lualine)
+            // (import ./plugin-config/luasnip)
+            // (import ./plugin-config/lz-n)
+            // (import ./plugin-config/mini)
+            // (import ./plugin-config/modicator)
+            // (import ./plugin-config/navbuddy)
+            // (import ./plugin-config/neo-tree)
+            // (import ./plugin-config/neorg { inherit pkgs; })
+            // (import ./plugin-config/neotest { inherit pkgs; })
+            // (import ./plugin-config/noice { inherit pkgs; })
+            // (import ./plugin-config/obsidian)
+            // (import ./plugin-config/octo)
+            // (import ./plugin-config/oil)
+            // (import ./plugin-config/oil-git-status)
+            // (import ./plugin-config/origami)
+            // (import ./plugin-config/otter)
+            // (import ./plugin-config/parinfer-rust)
+            // (import ./plugin-config/remote-nvim { inherit pkgs; })
+            // (import ./plugin-config/render-markdown)
+            // (import ./plugin-config/rustaceanvim { inherit pkgs; })
+            // (import ./plugin-config/schemastore)
+            // (import ./plugin-config/sidekick)
+            // (import ./plugin-config/smartcolumn)
+            // (import ./plugin-config/snacks)
+            # // (import ./plugin-config/tailwind-tools)
+            // (import ./plugin-config/tiny-devicons-auto-colors)
+            // (import ./plugin-config/tiny-inline-diagnostic)
+            // (import ./plugin-config/treesitter { inherit pkgs; })
+            // (import ./plugin-config/treesitter-context)
+            // (import ./plugin-config/trouble)
+            // (import ./plugin-config/which-key)
+            // (import ./plugin-config/zk)
           );
         } // (
           # (import ./colorschemes/ayu)

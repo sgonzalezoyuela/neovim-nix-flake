@@ -188,7 +188,6 @@
           ++ import ./keymaps/terminal
           ++ import ./keymaps/testing
           ++ import ./keymaps/zk;
-
           performance = {
             byteCompileLua = {
               enable = true;

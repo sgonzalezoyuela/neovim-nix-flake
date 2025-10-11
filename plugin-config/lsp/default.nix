@@ -4,10 +4,16 @@
     inlayHints = true;
 
     servers = {
+      # java_language_server.enable = false;
+      # jdtls.enable = false;
+      # pylyzer.enable = false;
+      # ruff_lsp.enable = false;
+      # vectorcode_server.enable = true;
+      # zls.enable = false;
       asm_lsp.enable = true;
       bashls.enable = true;
       bashls.package = pkgs.master.bash-language-server;
-      ccls.enable = true;
+      copilot.enable = true;
       cssls.enable = true;
       dockerls.enable = true;
       earthlyls.enable = true;
@@ -16,28 +22,35 @@
       golangci_lint_ls.enable = true;
       gopls.enable = true;
       html.enable = true;
-      java_language_server.enable = false;
-      jdtls.enable = false;
       jsonls.enable = true;
       lua_ls.enable = true;
-      marksman.enable = true;
       nushell.enable = true;
       pylsp.enable = true;
-      pylyzer.enable = false;
       qmlls.enable = true;
-      ruff_lsp.enable = false;
       superhtml.enable = true;
+      systemd_ls.enable = true;
       tailwindcss.enable = true;
+      taplo.enable = true;
       terraformls.enable = true;
+      tflint.enable = true;
+      tilt_ls.enable = true;
       ts_ls.enable = true;
       vacuum.enable = true;
-      # vectorcode_server.enable = true;
       veryl_ls.enable = true;
-      zls.enable = false;
+
+      ccls = {
+        enable = true;
+        package = pkgs.stable.ccls;
+      };
 
       helm_ls = {
         enable = true;
         filetypes = [ "helm" ];
+      };
+
+      marksman = {
+        enable = true;
+        package = pkgs.stable.marksman;
       };
 
       nixd = {

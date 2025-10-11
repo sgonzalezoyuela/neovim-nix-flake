@@ -85,21 +85,6 @@
 
           extraFiles = {
             "ftplugin/http.lua".text = import ./ftplugin/http.lua.nix;
-            "ftplugin/java.lua".text = ''
-              local config = {
-                cmd = {'${pkgs.jdt-language-server}/bin/jdtls', '--jvm-arg=-javaagent:${pkgs.lombok}/share/java/lombok.jar', '--jvm-arg=-Xbootclasspath/a:${pkgs.lombok}/share/java/lombok.jar'},
-                root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
-              }
-              require('jdtls').start_or_attach(config)
-            '';
-            "ftplugin/lua.lua".text = ''
-              local lazydev = require('lazydev')
-              lazydev.setup({
-                enabled = true
-              })
-
-              lazydev.find_workspace(buf)
-            '';
           };
 
           extraPackages = with pkgs; [
@@ -141,8 +126,6 @@
 
           extraPlugins = with pkgs.vimPlugins; [
             blink-cmp-avante
-            lazydev-nvim
-            nvim-jdtls
             vim-dadbod
             vim-dadbod-completion
             vim-dadbod-ui
@@ -201,6 +184,7 @@
           keymaps = [ ]
             ++ import ./keymaps/ai/avante
             ++ import ./keymaps/ai/codecompanion
+            ++ import ./keymaps/ai/sidekick
             ++ import ./keymaps/buffers
             ++ import ./keymaps/db
             ++ import ./keymaps/debugging
@@ -230,7 +214,6 @@
 
               standalonePlugins = with pkgs.vimPlugins; [
                 conform-nvim
-                copilot-lua
                 mini-nvim
                 nvim-jdtls
                 nvim-treesitter
@@ -242,7 +225,7 @@
           };
 
           plugins = {
-            # image.enable = true;
+            image.enable = true;
             bacon.enable = true;
             cmp-cmdline.enable = true;
             cmp-dap.enable = true;
@@ -252,6 +235,7 @@
             committia.enable = true;
             direnv.enable = true;
             earthly.enable = true;
+            ethersync.enable = true;
             fidget.enable = true;
             friendly-snippets.enable = true;
             fugitive.enable = true;
@@ -272,6 +256,7 @@
             nvim-ufo.enable = true;
             rainbow-delimiters.enable = true;
             rhubarb.enable = true;
+            roslyn.enable = false;
             sleuth.enable = true;
             smear-cursor.enable = true;
             specs.enable = false;
@@ -342,9 +327,10 @@
               // (import ./plugin-config/render-markdown)
               // (import ./plugin-config/rustaceanvim { inherit pkgs; })
               // (import ./plugin-config/schemastore)
+              // (import ./plugin-config/sidekick)
               // (import ./plugin-config/smartcolumn)
               // (import ./plugin-config/snacks)
-              // (import ./plugin-config/tailwind-tools)
+              # // (import ./plugin-config/tailwind-tools)
               // (import ./plugin-config/tiny-devicons-auto-colors)
               // (import ./plugin-config/tiny-inline-diagnostic)
               // (import ./plugin-config/treesitter { inherit pkgs; })
@@ -424,8 +410,8 @@
                     src = pkgs.fetchFromGitHub {
                       owner = "yetone";
                       repo = "avante.nvim";
-                      rev = "e538060156694eca378b35a28e78e1c7933b1296";
-                      hash = "sha256-DOoW4kaLZEb/PTMnCh79Qs/l2XlhNP46tPnLHar7X7w=";
+                      rev = "4390828e88c8526649d1af7000df5c512fa49bbb";
+                      hash = "sha256-asNRx4dhtzWVK6M2vWqATQtcHzrVQKvGQaqyVGSlunw=";
                     };
                   });
                 };

@@ -91,6 +91,42 @@
   }
   {
     mode = "n";
+    key = "<leader>gpp";
+    action = "<cmd>Git! push<CR>";
+    options = {
+      desc = "Git Push";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>gpf";
+    action = "<cmd>Git! pfl<CR>";
+    options = {
+      desc = "Git Push --force-with-lease";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>gpt";
+    action = "<cmd>Git! push --tags<CR>";
+    options = {
+      desc = "Git Push --tags";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>gpF";
+    action = "<cmd>Git push --force<CR>";
+    options = {
+      desc = "Git Push --force";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
     key = "<leader>gPP";
     action = "<cmd>Octo pr create<CR>";
     options = {

@@ -180,25 +180,27 @@
           };
 
           keymaps = [ ]
-          ++ import ./keymaps/ai/avante
-          ++ import ./keymaps/ai/codecompanion
-          ++ import ./keymaps/ai/sidekick
-          ++ import ./keymaps/buffers
-          ++ import ./keymaps/db
-          ++ import ./keymaps/debugging
-          ++ import ./keymaps/folding
-          ++ import ./keymaps/git
-          ++ import ./keymaps/harpoon
-          ++ import ./keymaps/jumps
-          ++ import ./keymaps/lsp
-          ++ import ./keymaps/notifications
-          ++ import ./keymaps/obsidian
-          ++ import ./keymaps/rust-lsp
-          ++ import ./keymaps/search
-          ++ import ./keymaps/tabs
-          ++ import ./keymaps/terminal
-          ++ import ./keymaps/testing
-          ++ import ./keymaps/zk;
+            ++ import ./keymaps/ai/avante
+            ++ import ./keymaps/ai/codecompanion
+            ++ import ./keymaps/ai/sidekick
+            ++ import ./keymaps/buffers
+            ++ import ./keymaps/db
+            ++ import ./keymaps/debugging
+            ++ import ./keymaps/folding
+            ++ import ./keymaps/git
+            ++ import ./keymaps/git/fugitive
+            ++ import ./keymaps/harpoon
+            ++ import ./keymaps/jumps
+            ++ import ./keymaps/lsp
+            ++ import ./keymaps/notifications
+            ++ import ./keymaps/obsidian
+            ++ import ./keymaps/rust-lsp
+            ++ import ./keymaps/search
+            ++ import ./keymaps/tabs
+            ++ import ./keymaps/terminal
+            ++ import ./keymaps/testing
+            ++ import ./keymaps/zk;
+
           performance = {
             byteCompileLua = {
               enable = true;

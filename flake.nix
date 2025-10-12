@@ -113,6 +113,7 @@
 
           extraPlugins = with pkgs.vimPlugins; [
             blink-cmp-avante
+            blink-cmp-conventional-commits
             vim-dadbod
             vim-dadbod-completion
             vim-dadbod-ui

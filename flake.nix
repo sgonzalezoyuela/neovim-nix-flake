@@ -342,6 +342,7 @@
               // (import ./plugin-config/mini)
               // (import ./plugin-config/modicator)
               // (import ./plugin-config/navbuddy)
+              // (import ./plugin-config/neo-tree)
               // (import ./plugin-config/neorg { inherit pkgs; })
               // (import ./plugin-config/neotest { inherit pkgs; })
               // (import ./plugin-config/noice { inherit pkgs; })

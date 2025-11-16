@@ -2,15 +2,8 @@
   telescope = {
     enable = true;
 
-    settings = {
-      defaults = {
-        mappings = {
-          i = {
-            ["<C-j>"] = "move_selection_next";
-            ["<C-k>"] = "move_selection_previous";
-          };
-        };
-      };
+    lazyLoad.settings = {
+      cmd = [ "Telescope" ];
     };
 
     extensions = {

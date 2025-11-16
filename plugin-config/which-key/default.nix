@@ -1,6 +1,11 @@
 {
   which-key = {
     enable = true;
+
+    lazyLoad.settings = {
+      event = [ "DeferredUIEnter" ];
+    };
+
     settings = {
       spec = [
         {
@@ -36,6 +41,11 @@
         {
           __unkeyed-1 = "<leader>as";
           desc = "Sidekick";
+          mode = ["n" "v"];
+        }
+        {
+          __unkeyed-1 = "<leader>asn";
+          desc = "Sidekick Next Edit Suggestions";
           mode = ["n" "v"];
         }
         {

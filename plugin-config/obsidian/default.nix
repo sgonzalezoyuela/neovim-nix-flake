@@ -1,6 +1,11 @@
 {
   obsidian = {
-    enable = false;
+    enable = true;
+
+    lazyLoad.settings = {
+      cmd = [ "Obsidian" ];
+      ft = [ "markdown" ];
+    };
 
     settings = {
       legacy_commands = false;

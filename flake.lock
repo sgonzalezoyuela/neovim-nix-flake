@@ -187,11 +187,19 @@
         "systems": "systems_2"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1763729894,
         "narHash": "sha256-hTWn0Z/BM5wzrnzY3RVNyXbguJBFGksatRtQvjCOqM8=",
         "owner": "nix-community",
         "repo": "nixvim",
         "rev": "e13ceae64fbdf1475ee71d4170dcd2869e17cfff",
+=======
+        "lastModified": 1764025877,
+        "narHash": "sha256-DTQIzHUt87dSjJJTNiS1x6KOKHeqfMcVvTyyvI8fsfI=",
+        "owner": "nix-community",
+        "repo": "nixvim",
+        "rev": "20f7ab0b0cbd3d8be999bd534cb4d8824424af9b",
+>>>>>>> f5a64b3 (flake.lock: Update)
         "type": "github"
       },
       "original": {

@@ -419,7 +419,7 @@
             committia.enable = true;
             direnv.enable = true;
             earthly.enable = true;
-            fidget.enable = true;
+            fidget.enable = false;
             friendly-snippets.enable = true;
             fugitive.enable = true;
             gitignore.enable = true;

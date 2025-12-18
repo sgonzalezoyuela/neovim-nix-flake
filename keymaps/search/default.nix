@@ -32,7 +32,7 @@
   {
     mode = "n";
     key = "<leader>f";
-    action = "<cmd>lua require('snacks').picker.smart()<CR>";
+    action = "<cmd>lua require('snacks').picker.files()<CR>";
     options = {
       desc = "Find Files";
       silent = true;
@@ -62,6 +62,15 @@
     action = "<cmd>lua require('snacks').picker.help()<CR>";
     options = {
       desc = "Help tags";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>ss";
+    action = "<cmd>Tv<CR>";
+    options = {
+      desc = "Search TV channels";
       silent = true;
     };
   }

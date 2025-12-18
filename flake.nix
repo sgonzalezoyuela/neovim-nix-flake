@@ -8,7 +8,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
-    # nixvim.url = "github:alisonjenkins/nixvim/add-bamboo-colourscheme";
+    # nixvim.url = "github:alisonjenkins/nixvim/fix/sidekick-nes-disabled";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
@@ -206,6 +206,26 @@
               end
               async_git_command(args, "Git fetch")
             end, { nargs = "*" })
+
+            -- Load Terraform snippets from vscode-terraform-doc-snippets plugin
+            vim.schedule(function()
+              -- Check if luasnip is loaded
+              local ok, luasnip = pcall(require, "luasnip")
+              if not ok then return end
+
+              local luasnip_vscode = require("luasnip.loaders.from_vscode")
+
+              -- Find the vscode-terraform-doc-snippets plugin path
+              local terraform_snippets_path = vim.fn.glob(vim.fn.stdpath("data") .. "/nvim/site/pack/*/start/vscode-terraform-doc-snippets")
+
+              if terraform_snippets_path ~= "" then
+                -- Load the Terraform snippets from the plugin
+                luasnip_vscode.lazy_load({ paths = { terraform_snippets_path } })
+              end
+
+              -- Ensure terraform filetype uses terraform snippets
+              luasnip.filetype_extend("terraform", { "terraform" })
+            end)
           '';
 
           extraFiles = {
@@ -261,6 +281,16 @@
             vim-table-mode
 
             (pkgs.vimUtils.buildVimPlugin {
+              name = "vscode-terraform-doc-snippets";
+              src = pkgs.fetchFromGitHub {
+                owner = "run-at-scale";
+                repo = "vscode-terraform-doc-snippets";
+                rev = "6ab3e44b566e660f38922cf908e6e547eaa5d4b4";
+                hash = "sha256-v392tyzXV+zyBNt5OCB2NBCK7JcByrTa5Ne/nFtSCJI=";
+              };
+            })
+
+            (pkgs.vimUtils.buildVimPlugin {
               name = "blink-cmp-tmux";
               src = pkgs.fetchFromGitHub {
                 owner = "mgalliou";
@@ -311,7 +341,7 @@
             autoindent = true;
             backspace = "indent,eol,start";
             backup = true;
-            cmdheight = 0;  # Required when using Noice
+            cmdheight = 0; # Required when using Noice
             completeopt = "menu,menuone,noselect";
             conceallevel = 0;
             cursorline = true;
@@ -334,18 +364,18 @@
             termguicolors = true;
             timeoutlen = 300;
             undofile = true;
-            updatetime = 300;    # Restored to 300ms for better AV performance (was 50ms)
+            updatetime = 300; # Restored to 300ms for better AV performance (was 50ms)
             wrap = false;
             writebackup = true;
             clipboard = "unnamedplus";
             # Performance optimizations
-            synmaxcol = 300;     # Limit syntax highlighting columns
-            lazyredraw = false;   # Don't redraw during macros (keep false for smooth UI)
-            regexpengine = 0;    # Auto-select regex engine
+            synmaxcol = 300; # Limit syntax highlighting columns
+            lazyredraw = false; # Don't redraw during macros (keep false for smooth UI)
+            regexpengine = 0; # Auto-select regex engine
             maxmempattern = 1000; # Limit memory for pattern matching
             # Search optimizations for AV-heavy environments (macOS Defender)
-            hlsearch = false;    # Disable search highlighting by default (use Telescope/Snacks instead)
-            incsearch = true;    # Keep incremental search enabled
+            hlsearch = false; # Disable search highlighting by default (use Telescope/Snacks instead)
+            incsearch = true; # Keep incremental search enabled
             # Timeout settings
             timeout = true;
             ttimeout = true;
@@ -353,28 +383,28 @@
           };
 
           keymaps = [ ]
-            ++ import ./keymaps/ai/avante
-            ++ import ./keymaps/ai/codecompanion
-            ++ import ./keymaps/ai/sidekick
-            ++ import ./keymaps/buffers
-            ++ import ./keymaps/db
-            ++ import ./keymaps/debugging
-            ++ import ./keymaps/folding
-            ++ import ./keymaps/git
-            ++ import ./keymaps/git/fugitive
-            ++ import ./keymaps/harpoon
-            ++ import ./keymaps/jujutsu
-            ++ import ./keymaps/jumps
-            ++ import ./keymaps/lsp
-            ++ import ./keymaps/notifications
-            ++ import ./keymaps/obsidian
-            ++ import ./keymaps/rust-lsp
-            ++ import ./keymaps/search
-            ++ import ./keymaps/tabs
-            ++ import ./keymaps/terminal
-            ++ import ./keymaps/testing
-            ++ import ./keymaps/toggles
-            ++ import ./keymaps/zk;
+          # ++ import ./keymaps/ai/codecompanion
+          ++ import ./keymaps/ai/sidekick
+          # ++ import ./keymaps/ai/avante
+          ++ import ./keymaps/buffers
+          ++ import ./keymaps/db
+          ++ import ./keymaps/debugging
+          ++ import ./keymaps/folding
+          ++ import ./keymaps/git
+          ++ import ./keymaps/git/fugitive
+          ++ import ./keymaps/harpoon
+          ++ import ./keymaps/jujutsu
+          ++ import ./keymaps/jumps
+          ++ import ./keymaps/lsp
+          ++ import ./keymaps/notifications
+          ++ import ./keymaps/obsidian
+          ++ import ./keymaps/rust-lsp
+          ++ import ./keymaps/search
+          ++ import ./keymaps/tabs
+          ++ import ./keymaps/terminal
+          ++ import ./keymaps/testing
+          ++ import ./keymaps/toggles
+          ++ import ./keymaps/zk;
 
           performance = {
             byteCompileLua = {
@@ -444,81 +474,82 @@
             typst-vim.enable = true;
             vim-css-color.enable = true;
             web-devicons.enable = true;
-            wilder.enable = false;  # Conflicts with Noice
+            wilder.enable = false; # Conflicts with Noice
             wrapping.enable = true;
             zig.enable = true;
           }
           // (
             # (import ./plugin-config/alpha)
-              # // (import ./plugin-config/teamtype)
-              # // (import ./plugin-config/tailwind-tools)
-              (import ./plugin-config/auto-session)
-              // (import ./plugin-config/arrow)
-              // (import ./plugin-config/avante { inherit pkgs; })
-              // (import ./plugin-config/blink-cmp { inherit pkgs; })
-              // (import ./plugin-config/blink-cmp-copilot)
-              // (import ./plugin-config/blink-cmp-dictionary)
-              // (import ./plugin-config/blink-cmp-git)
-              // (import ./plugin-config/blink-compat)
-              // (import ./plugin-config/blink-ripgrep)
-              // (import ./plugin-config/ccc)
-              // (import ./plugin-config/codecompanion)
-              // (import ./plugin-config/colorful-menu)
-              // (import ./plugin-config/conform-nvim)
-              // (import ./plugin-config/copilot-lua)
-              // (import ./plugin-config/crates)
-              // (import ./plugin-config/cybu)
-              // (import ./plugin-config/dap { inherit pkgs; })
-              // (import ./plugin-config/dap-go { inherit pkgs; })
-              // (import ./plugin-config/dap-lldb { inherit pkgs; })
-              // (import ./plugin-config/dap-python)
-              // (import ./plugin-config/dap-ui)
-              // (import ./plugin-config/dap-virtual-text)
-              // (import ./plugin-config/faster-nvim)
-              // (import ./plugin-config/git-conflict)
-              // (import ./plugin-config/harpoon)
-              // (import ./plugin-config/image)
-              // (import ./plugin-config/img-clip { inherit  pkgs; })
-              // (import ./plugin-config/indent-tools)
-              // (import ./plugin-config/kulala { inherit pkgs; })
-              // (import ./plugin-config/lazydev)
-              // (import ./plugin-config/lsp { inherit  pkgs; })
-              // (import ./plugin-config/lspkind)
-              // (import ./plugin-config/lualine)
-              // (import ./plugin-config/luasnip)
-              // (import ./plugin-config/lz-n)
-              // (import ./plugin-config/mini)
-              // (import ./plugin-config/modicator)
-              // (import ./plugin-config/navbuddy)
-              // (import ./plugin-config/neo-tree)
-              // (import ./plugin-config/neorg { inherit pkgs; })
-              // (import ./plugin-config/neotest { inherit pkgs; })
-              // (import ./plugin-config/noice { inherit pkgs; })
-              // (import ./plugin-config/obsidian)
-              // (import ./plugin-config/octo)
-              // (import ./plugin-config/oil)
-              // (import ./plugin-config/oil-git-status)
-              // (import ./plugin-config/origami)
-              // (import ./plugin-config/otter)
-              // (import ./plugin-config/parinfer-rust)
-              // (import ./plugin-config/remote-nvim { inherit pkgs; })
-              // (import ./plugin-config/render-markdown)
-              // (import ./plugin-config/rustaceanvim { inherit pkgs; })
-              // (import ./plugin-config/schemastore)
-              // (import ./plugin-config/sidekick)
-              // (import ./plugin-config/smartcolumn)
-              // (import ./plugin-config/snacks)
-              // (import ./plugin-config/tardis)
-              // (import ./plugin-config/tiny-devicons-auto-colors)
-              // (import ./plugin-config/tiny-inline-diagnostic)
-              // (import ./plugin-config/treesitter { inherit pkgs; })
-              // (import ./plugin-config/treesitter-context)
-              // (import ./plugin-config/trouble)
-              // (import ./plugin-config/twilight)
-              // (import ./plugin-config/vim-be-good)
-              // (import ./plugin-config/which-key)
-              // (import ./plugin-config/zen-mode)
-              // (import ./plugin-config/zk)
+            # // (import ./plugin-config/teamtype)
+            # // (import ./plugin-config/tailwind-tools)
+            # // (import ./plugin-config/copilot-lua)
+            # // (import ./plugin-config/blink-cmp-copilot)
+            # // (import ./plugin-config/codecompanion)
+            # // (import ./plugin-config/avante { inherit pkgs; })
+            (import ./plugin-config/auto-session)
+            // (import ./plugin-config/arrow)
+            // (import ./plugin-config/blink-cmp { inherit pkgs; })
+            // (import ./plugin-config/blink-cmp-dictionary)
+            // (import ./plugin-config/blink-cmp-git)
+            // (import ./plugin-config/blink-compat)
+            // (import ./plugin-config/blink-ripgrep)
+            // (import ./plugin-config/ccc)
+            // (import ./plugin-config/colorful-menu)
+            // (import ./plugin-config/conform-nvim)
+            // (import ./plugin-config/crates)
+            // (import ./plugin-config/cybu)
+            // (import ./plugin-config/dap { inherit pkgs; })
+            // (import ./plugin-config/dap-go { inherit pkgs; })
+            // (import ./plugin-config/dap-lldb { inherit pkgs; })
+            // (import ./plugin-config/dap-python)
+            // (import ./plugin-config/dap-ui)
+            // (import ./plugin-config/dap-virtual-text)
+            // (import ./plugin-config/faster-nvim)
+            // (import ./plugin-config/git-conflict)
+            // (import ./plugin-config/harpoon)
+            // (import ./plugin-config/image)
+            // (import ./plugin-config/img-clip { inherit pkgs; })
+            // (import ./plugin-config/indent-tools)
+            // (import ./plugin-config/kulala { inherit pkgs; })
+            // (import ./plugin-config/lazydev)
+            // (import ./plugin-config/lsp { inherit pkgs; })
+            // (import ./plugin-config/lspkind)
+            // (import ./plugin-config/lualine)
+            // (import ./plugin-config/luasnip)
+            // (import ./plugin-config/lz-n)
+            // (import ./plugin-config/mini)
+            // (import ./plugin-config/modicator)
+            // (import ./plugin-config/navbuddy)
+            // (import ./plugin-config/neorg { inherit pkgs; })
+            // (import ./plugin-config/neotest { inherit pkgs; })
+            // (import ./plugin-config/neo-tree)
+            // (import ./plugin-config/noice { inherit pkgs; })
+            // (import ./plugin-config/obsidian)
+            // (import ./plugin-config/octo)
+            // (import ./plugin-config/oil)
+            // (import ./plugin-config/oil-git-status)
+            // (import ./plugin-config/origami)
+            // (import ./plugin-config/otter)
+            // (import ./plugin-config/parinfer-rust)
+            // (import ./plugin-config/remote-nvim { inherit pkgs; })
+            // (import ./plugin-config/render-markdown)
+            // (import ./plugin-config/rustaceanvim { inherit pkgs; })
+            // (import ./plugin-config/schemastore)
+            // (import ./plugin-config/sidekick)
+            // (import ./plugin-config/smartcolumn)
+            // (import ./plugin-config/snacks)
+            // (import ./plugin-config/tardis)
+            // (import ./plugin-config/tiny-devicons-auto-colors)
+            // (import ./plugin-config/tiny-inline-diagnostic)
+            // (import ./plugin-config/treesitter { inherit pkgs; })
+            // (import ./plugin-config/treesitter-context)
+            // (import ./plugin-config/trouble)
+            // (import ./plugin-config/tv)
+            // (import ./plugin-config/twilight)
+            // (import ./plugin-config/vim-be-good)
+            // (import ./plugin-config/which-key)
+            // (import ./plugin-config/zen-mode)
+            // (import ./plugin-config/zk)
           );
         } // (
           # (import ./colorschemes/ayu)
@@ -587,14 +618,14 @@
               })
               (final: prev: {
                 vimPlugins = prev.vimPlugins // {
-                  avante-nvim = prev.vimPlugins.avante-nvim.overrideAttrs (oldAttrs: {
-                    src = pkgs.fetchFromGitHub {
-                      owner = "yetone";
-                      repo = "avante.nvim";
-                      rev = "4390828e88c8526649d1af7000df5c512fa49bbb";
-                      hash = "sha256-asNRx4dhtzWVK6M2vWqATQtcHzrVQKvGQaqyVGSlunw=";
-                    };
-                  });
+                  # avante-nvim = prev.vimPlugins.avante-nvim.overrideAttrs (oldAttrs: {
+                  #   src = pkgs.fetchFromGitHub {
+                  #     owner = "yetone";
+                  #     repo = "avante.nvim";
+                  #     rev = "4390828e88c8526649d1af7000df5c512fa49bbb";
+                  #     hash = "sha256-asNRx4dhtzWVK6M2vWqATQtcHzrVQKvGQaqyVGSlunw=";
+                  #   };
+                  # });
                   # Override lualine to fetch directly from GitHub, bypassing luarocks hash issue
                   lualine-nvim = final.vimUtils.buildVimPlugin {
                     pname = "lualine.nvim";

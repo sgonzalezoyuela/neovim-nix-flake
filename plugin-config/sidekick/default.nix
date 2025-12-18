@@ -3,7 +3,13 @@
     enable = true;
 
     settings = {
-      keys = {};
+      opts = {
+        nes = {
+          enabled = false;
+        };
+      };
+
+      keys = { };
 
       cli = {
         mux = {

@@ -324,7 +324,7 @@
         # Performance optimizations for treesitter
         incremental_selection = { enable = true; };
         indent = { enable = false; }; # Keep disabled for performance
-        textobjects.enable = true;
+        # textobjects.enable = true; # Disabled - master branch frozen, main branch incompatible
 
         highlight = {
           enable = true;

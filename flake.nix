@@ -226,6 +226,40 @@
               -- Ensure terraform filetype uses terraform snippets
               luasnip.filetype_extend("terraform", { "terraform" })
             end)
+
+            -- vim-illuminate configuration
+            -- Replaces deprecated nvim-treesitter-refactor (archived Nov 28, 2025)
+            require('illuminate').configure({
+              -- providers: ordered by priority (LSP > Tree-sitter > regex)
+              providers = {
+                'lsp',
+                'treesitter',
+                'regex',
+              },
+              -- delay: delay in milliseconds before highlighting
+              delay = 100,
+              -- filetypes_denylist: filetypes to not illuminate
+              filetypes_denylist = {
+                'dirbuf',
+                'dirvish',
+                'fugitive',
+                'neo-tree',
+                'TelescopePrompt',
+                'NvimTree',
+                'toggleterm',
+                'alpha',
+                'dashboard',
+              },
+              -- under_cursor: whether or not to illuminate under the cursor
+              under_cursor = true,
+              -- large_file_cutoff: number of lines at which to use large_file_config
+              -- Aligned with treesitter's large file optimization (10000 lines)
+              large_file_cutoff = 10000,
+              -- large_file_overrides: config to use for large files (nil = disable)
+              large_file_overrides = nil,
+              -- min_count_to_highlight: minimum number of matches required
+              min_count_to_highlight = 2,
+            })
           '';
 
           extraFiles = {
@@ -277,6 +311,7 @@
             vim-dadbod
             vim-dadbod-completion
             vim-dadbod-ui
+            vim-illuminate # Replaces deprecated nvim-treesitter-refactor
             vim-pencil
             vim-table-mode
 
@@ -467,8 +502,8 @@
             specs.enable = false;
             startify.enable = true;
             tmux-navigator.enable = true;
-            treesitter-refactor.enable = true;
-            treesitter-textobjects.enable = true;
+            # treesitter-refactor.enable = true; # Archived on Nov 28, 2025 - replaced with vim-illuminate
+            # treesitter-textobjects.enable = true; # Master branch frozen, main branch incompatible with current nixpkgs
             ts-autotag.enable = true;
             ts-context-commentstring.enable = true;
             typst-vim.enable = true;

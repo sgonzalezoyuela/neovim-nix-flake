@@ -50,6 +50,12 @@
           ];
 
           extraConfigLua = ''
+            -- Add writable treesitter parser directory to runtimepath
+            -- nvim-treesitter compiles parsers here since the Nix store is read-only
+            local ts_parser_dir = vim.fn.stdpath("data") .. "/treesitter"
+            vim.fn.mkdir(ts_parser_dir, "p")
+            vim.opt.runtimepath:append(ts_parser_dir)
+
             -- Performance optimizations
             vim.g.loaded_node_provider = 0  -- Disable Node.js provider
             vim.g.loaded_perl_provider = 0  -- Disable Perl provider
@@ -273,6 +279,7 @@
             black
             cowsay
             fd
+            gcc # Required for nvim-treesitter to compile grammars at runtime
             fortune
             ghostscript
             gofumpt
@@ -576,7 +583,7 @@
             // (import ./plugin-config/tardis)
             // (import ./plugin-config/tiny-devicons-auto-colors)
             // (import ./plugin-config/tiny-inline-diagnostic)
-            // (import ./plugin-config/treesitter { inherit pkgs; })
+            // (import ./plugin-config/treesitter)
             // (import ./plugin-config/treesitter-context)
             // (import ./plugin-config/trouble)
             // (import ./plugin-config/tv)

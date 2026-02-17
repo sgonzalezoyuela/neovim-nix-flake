@@ -1,5 +1,10 @@
 {
   indent-tools = {
-    enable = false; # Disabled due to dependency on broken nvim-treesitter-textobjects
+    enable = true;
+    lazyLoad = {
+      settings = {
+        event = [ "BufReadPost" "BufNewFile" ];
+      };
+    };
   };
 }

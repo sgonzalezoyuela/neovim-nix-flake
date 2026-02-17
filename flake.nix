@@ -491,11 +491,11 @@
             hardtime.enable = false;
             helm.enable = true;
             helpview.enable = true;
-            hmts.enable = true;
+            hmts.enable = false;
             lastplace.enable = true;
             lspkind.enable = true;
             lspsaga.enable = true;
-            markdown-preview.enable = true;
+            markdown-preview.enable = false; # Disabled due to memory constraints during nix build on macOS
             molten.enable = true;
             navic.enable = true;
             nix.enable = true;
@@ -583,7 +583,7 @@
             // (import ./plugin-config/tardis)
             // (import ./plugin-config/tiny-devicons-auto-colors)
             // (import ./plugin-config/tiny-inline-diagnostic)
-            // (import ./plugin-config/treesitter)
+            // (import ./plugin-config/treesitter {inherit pkgs;})
             // (import ./plugin-config/treesitter-context)
             // (import ./plugin-config/trouble)
             // (import ./plugin-config/tv)

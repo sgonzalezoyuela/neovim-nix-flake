@@ -270,6 +270,9 @@
 
           extraFiles = {
             "ftplugin/http.lua".text = import ./ftplugin/http.lua.nix;
+            # Patched Python highlights query without "except*" keyword
+            # TODO: Remove once nvim-treesitter fixes the query upstream
+            "queries/python/highlights.scm".source = ./queries/python/highlights.scm;
           };
 
           extraPackages = with pkgs; [
@@ -507,7 +510,7 @@
             sleuth.enable = true;
             smear-cursor.enable = true;
             specs.enable = false;
-            startify.enable = true;
+            startify.enable = false;
             tmux-navigator.enable = true;
             # treesitter-refactor.enable = true; # Archived on Nov 28, 2025 - replaced with vim-illuminate
             # treesitter-textobjects.enable = true; # Master branch frozen, main branch incompatible with current nixpkgs

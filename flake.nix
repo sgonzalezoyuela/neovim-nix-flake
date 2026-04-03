@@ -293,17 +293,12 @@
             isort
             jq
             jujutsu
-            jupyter
             lsof
-            mermaid-cli
             nixpkgs-fmt
-            nodePackages.prettier
+            prettier
             openssl
-            postgresql
             prettierd
             ripgrep
-            rust-analyzer
-            rustfmt
             shfmt
             sqlite
             stable.tectonic
@@ -654,6 +649,11 @@
                   system = final.stdenv.hostPlatform.system;
                   config.allowUnfree = true;
                 };
+              })
+              # Pin claude-code to nixpkgs-master — nixos-unstable lags behind
+              # and yanked versions cause build failures
+              (final: _prev: {
+                inherit (final.master) claude-code claude-code-bin;
               })
               (final: _prev: {
                 stable = import inputs.nixpkgs-stable {

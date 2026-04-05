@@ -427,43 +427,13 @@
               luasnip.filetype_extend("terraform", { "terraform" })
             end)
 
-            -- vim-illuminate configuration
-            -- Replaces deprecated nvim-treesitter-refactor (archived Nov 28, 2025)
-            require('illuminate').configure({
-              -- providers: ordered by priority (LSP > Tree-sitter > regex)
-              providers = {
-                'lsp',
-                'treesitter',
-                'regex',
-              },
-              -- delay: delay in milliseconds before highlighting
-              delay = 100,
-              -- filetypes_denylist: filetypes to not illuminate
-              filetypes_denylist = {
-                'dirbuf',
-                'dirvish',
-                'fugitive',
-                'neo-tree',
-                'TelescopePrompt',
-                'NvimTree',
-                'toggleterm',
-                'alpha',
-                'dashboard',
-              },
-              -- under_cursor: whether or not to illuminate under the cursor
-              under_cursor = true,
-              -- large_file_cutoff: number of lines at which to use large_file_config
-              -- Aligned with treesitter's large file optimization (10000 lines)
-              large_file_cutoff = 10000,
-              -- large_file_overrides: config to use for large files (nil = disable)
-              large_file_overrides = nil,
-              -- min_count_to_highlight: minimum number of matches required
-              min_count_to_highlight = 2,
-            })
+            -- Terraform/OpenTofu tools: docs lookup and security scanning
+            require("terraform-tools").setup()
           '';
 
           extraFiles = {
             "ftplugin/http.lua".text = import ./ftplugin/http.lua.nix;
+            "lua/terraform-tools.lua".source = ./lua/terraform-tools.lua;
             # Patched Python highlights query without "except*" keyword
             # TODO: Remove once nvim-treesitter fixes the query upstream
             "queries/python/highlights.scm".source = ./queries/python/highlights.scm;
@@ -479,6 +449,7 @@
             (python3.withPackages (python-pkgs: [ python-pkgs.pylatexenc ]))
             black
             cowsay
+            curl
             fd
             gcc # Required for nvim-treesitter to compile grammars at runtime
             fortune
@@ -493,8 +464,8 @@
             jujutsu
             lsof
             nixpkgs-fmt
-            prettier
             openssl
+            prettier
             prettierd
             ripgrep
             shfmt
@@ -502,6 +473,8 @@
             stable.tectonic
             stylua
             terraform
+            tfsec
+            trivy
             websocat
             wordnet
             wl-clipboard
@@ -521,16 +494,6 @@
             vim-illuminate # Replaces deprecated nvim-treesitter-refactor
             vim-pencil
             vim-table-mode
-
-            (pkgs.vimUtils.buildVimPlugin {
-              name = "vscode-terraform-doc-snippets";
-              src = pkgs.fetchFromGitHub {
-                owner = "run-at-scale";
-                repo = "vscode-terraform-doc-snippets";
-                rev = "6ab3e44b566e660f38922cf908e6e547eaa5d4b4";
-                hash = "sha256-v392tyzXV+zyBNt5OCB2NBCK7JcByrTa5Ne/nFtSCJI=";
-              };
-            })
 
             (pkgs.vimUtils.buildVimPlugin {
               name = "blink-cmp-dap";
@@ -570,6 +533,16 @@
                 repo = "pipeline.nvim";
                 rev = "d14a27ba7f25ecb72e28bb9844672de99b151eaa";
                 hash = "sha256-Pl1HkXpnyAIVct3BjGtGTQf2M270Gq5wSh+KUKnL1Tk=";
+              };
+            })
+
+            (pkgs.vimUtils.buildVimPlugin {
+              name = "vscode-terraform-doc-snippets";
+              src = pkgs.fetchFromGitHub {
+                owner = "run-at-scale";
+                repo = "vscode-terraform-doc-snippets";
+                rev = "6ab3e44b566e660f38922cf908e6e547eaa5d4b4";
+                hash = "sha256-v392tyzXV+zyBNt5OCB2NBCK7JcByrTa5Ne/nFtSCJI=";
               };
             })
           ];
@@ -661,6 +634,7 @@
           ++ import ./keymaps/rust-lsp
           ++ import ./keymaps/search
           ++ import ./keymaps/tabs
+          ++ import ./keymaps/terraform
           ++ import ./keymaps/terminal
           ++ import ./keymaps/testing
           ++ import ./keymaps/toggles
@@ -775,11 +749,13 @@
             // (import ./plugin-config/neorg { inherit pkgs; })
             // (import ./plugin-config/neotest)
             // (import ./plugin-config/noice { inherit pkgs; })
+            // (import ./plugin-config/none-ls)
             // (import ./plugin-config/obsidian)
             // (import ./plugin-config/octo)
             // (import ./plugin-config/oil)
             // (import ./plugin-config/oil-git-status)
             // (import ./plugin-config/origami)
+
             // (import ./plugin-config/otter)
             // (import ./plugin-config/parinfer-rust)
             // (import ./plugin-config/remote-nvim { inherit pkgs; })

@@ -393,15 +393,10 @@ in
       ];
 
       settings = {
-        # Redirect parser installation to a writable directory outside the Nix store.
-        # The Nix store is read-only, so nvim-treesitter cannot compile parsers there.
-        # This path resolves to ~/.local/share/nvim/treesitter at runtime.
-        parser_install_dir.__raw = "vim.fn.stdpath('data') .. '/treesitter'";
-
         # Performance optimizations for treesitter
         incremental_selection = { enable = true; };
         indent = { enable = false; }; # Keep disabled for performance
-        # textobjects.enable = true; # Disabled - master branch frozen, main branch incompatible
+        textobjects.enable = true;
 
         highlight = {
           enable = true;
@@ -427,9 +422,9 @@ in
           additional_vim_regex_highlighting = false;
         };
 
-        # Let nvim-treesitter compile parsers on first use
-        auto_install = true;
-        ensure_installed = [ ]; # Parsers install automatically when needed
+        # Optimize parser loading
+        auto_install = false; # Don't auto-install at runtime
+        ensure_installed = [ ]; # All grammars are managed by Nix
 
         # Performance settings
         sync_install = false;

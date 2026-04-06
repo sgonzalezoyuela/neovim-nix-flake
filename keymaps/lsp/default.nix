@@ -152,14 +152,4 @@
       silent = true;
     };
   }
-  {
-    mode = "n";
-    key = "<leader>lt";
-    action = "<cmd>lua vim.lsp.buf.format()<cr>";
-    options = {
-      desc = "LSP format buffer";
-      silent = true;
-    };
-
-  }
 ]

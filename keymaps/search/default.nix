@@ -8,27 +8,24 @@
       silent = true;
     };
   }
-
   {
     mode = "n";
-    key = "<leader>sk";
-    action = "<cmd>Telescope keymaps<CR>";
+    key = "<leader>sB";
+    action = "<cmd>require('snacks').picker.git_branches()<CR>";
     options = {
-      desc = "Search for keymaps";
+      desc = "Git Branches";
       silent = true;
     };
   }
-
-  {
-    mode = "n";
-    key = "<leader>se";
-    action = "<cmd>Neotree toggle<CR>";
-    options = {
-      desc = "Explore files (File Browser)";
-      silent = true;
-    };
-  }
-
+  # {
+  #   mode = "n";
+  #   key = "<leader>se";
+  #   action = "<cmd>Telescope file_browser<CR>";
+  #   options = {
+  #     desc = "Explore files (File Browser)";
+  #     silent = true;
+  #   };
+  # }
   {
     mode = "n";
     key = "<leader>f";

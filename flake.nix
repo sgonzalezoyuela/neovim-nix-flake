@@ -451,7 +451,6 @@
             cowsay
             curl
             fd
-            gcc # Required for nvim-treesitter to compile grammars at runtime
             fortune
             ghostscript
             gofumpt
@@ -477,8 +476,6 @@
             trivy
             websocat
             wordnet
-            wl-clipboard
-
           ];
 
           extraPlugins = with pkgs.vimPlugins; [
@@ -491,7 +488,6 @@
             vim-dadbod
             vim-dadbod-completion
             vim-dadbod-ui
-            vim-illuminate # Replaces deprecated nvim-treesitter-refactor
             vim-pencil
             vim-table-mode
 
@@ -593,7 +589,6 @@
             updatetime = 300; # Restored to 300ms for better AV performance (was 50ms)
             wrap = false;
             writebackup = true;
-            clipboard = "unnamedplus";
             # Performance optimizations
             synmaxcol = 300; # Limit syntax highlighting columns
             lazyredraw = false; # Don't redraw during macros (keep false for smooth UI)
@@ -681,7 +676,7 @@
             hardtime.enable = false;
             helm.enable = true;
             helpview.enable = true;
-            hmts.enable = false;
+            hmts.enable = true;
             lastplace.enable = true;
             lspkind.enable = true;
             lspsaga.enable = true;
@@ -768,7 +763,7 @@
             // (import ./plugin-config/tardis)
             // (import ./plugin-config/tiny-devicons-auto-colors)
             // (import ./plugin-config/tiny-inline-diagnostic)
-            // (import ./plugin-config/treesitter {inherit pkgs;})
+            // (import ./plugin-config/treesitter { inherit pkgs; })
             // (import ./plugin-config/treesitter-context)
             // (import ./plugin-config/trouble)
             // (import ./plugin-config/tv)
@@ -789,11 +784,11 @@
           # (import ./colorschemes/monokai-pro)
           # (import ./colorschemes/nightfox)
           # (import ./colorschemes/rose-pine)
-          (import ./colorschemes/tokyonight)
+          # (import ./colorschemes/tokyonight)
           # (import ./colorschemes/vscode)
           # (import ./colorschemes/poimandres)
           # (import ./colorschemes/onedark)
-          # (import ./colorschemes/bamboo)
+          (import ./colorschemes/bamboo)
         );
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
@@ -827,8 +822,6 @@
             config = {
               allowUnfree = true;
             };
-
-            clipboard.providers.wl-copy.enable = true;
 
             overlays = [
               (final: _prev: {

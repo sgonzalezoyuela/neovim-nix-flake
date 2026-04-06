@@ -1,6 +1,6 @@
 {
   obsidian = {
-    enable = false;
+    enable = true;
 
     lazyLoad.settings = {
       cmd = [ "Obsidian" ];

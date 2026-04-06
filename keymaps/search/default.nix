@@ -86,7 +86,28 @@
   {
     mode = "n";
     key = "<leader>sp";
-    action = "<cmd>lua require('snacks').picker.zoxide()<CR>";
+    action.__raw = ''
+      function()
+        require('snacks').picker.zoxide({
+          actions = {
+            oil_open = function(picker, item)
+              if item then
+                picker:close()
+                vim.cmd('Oil ' .. vim.fn.fnameescape(item.file))
+              end
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ['<c-e>'] = { 'oil_open', mode = { 'n', 'i' }, desc = 'Open in Oil' },
+                ['<c-d>'] = { 'tcd', mode = { 'n', 'i' }, desc = 'Change directory' },
+              },
+            },
+          },
+        })
+      end
+    '';
     options = {
       desc = "Search for projects via zoxide";
       silent = true;
@@ -104,7 +125,28 @@
   {
     mode = "n";
     key = "<leader>sz";
-    action = "<cmd>lua require('snacks').picker.zoxide()<CR>";
+    action.__raw = ''
+      function()
+        require('snacks').picker.zoxide({
+          actions = {
+            oil_open = function(picker, item)
+              if item then
+                picker:close()
+                vim.cmd('Oil ' .. vim.fn.fnameescape(item.file))
+              end
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ['<c-e>'] = { 'oil_open', mode = { 'n', 'i' }, desc = 'Open in Oil' },
+                ['<c-d>'] = { 'tcd', mode = { 'n', 'i' }, desc = 'Change directory' },
+              },
+            },
+          },
+        })
+      end
+    '';
     options = {
       desc = "Search for projects via zoxide";
       silent = true;
